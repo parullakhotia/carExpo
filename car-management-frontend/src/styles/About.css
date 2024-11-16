@@ -1,0 +1,23 @@
+.about {
+    text-align: center;
+    padding: 2rem;
+}
+
+.about p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+.about-images {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.about-images img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
