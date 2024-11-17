@@ -12,9 +12,17 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                // Fetch allowed origins from environment variable or use default
+                String allowedOrigins = System.getenv("ALLOWED_ORIGINS");
+                if (allowedOrigins == null || allowedOrigins.isEmpty()) {
+                    allowedOrigins = "http://localhost:3000"; // Default value for local development
+                }
+
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000") // Allow frontend origin
-                        .allowedMethods("*"); // Allow all HTTP methods
+                        .allowedOrigins(allowedOrigins.split(",")) // Support multiple origins
+                        .allowedMethods("*") // Allow all HTTP methods
+                        .allowedHeaders("*") // Allow all headers
+                        .allowCredentials(true); // Allow credentials like cookies or auth headers
             }
         };
     }
